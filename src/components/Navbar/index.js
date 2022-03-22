@@ -36,7 +36,6 @@ const Navbar = (props) => {
     logoutWs();
     loggedOut();
     navigate("/login");
-    window.location.reload(false);
   };
 
   const handleAdd = (email) => {

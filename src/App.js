@@ -10,6 +10,7 @@ function App() {
 
   const handleLogout = () => {
     setUser(null);
+    console.log("adios user", user);
   };
 
   const authenticate = (user) => {
