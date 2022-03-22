@@ -105,7 +105,6 @@ function Profile({ user }) {
     });
   }, []);
 
-  console.log(friends);
   return isLoading ? (
     <Loading />
   ) : (

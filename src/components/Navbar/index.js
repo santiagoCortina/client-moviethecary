@@ -32,6 +32,7 @@ const Navbar = (props) => {
   };
 
   const handleLogout = () => {
+    props.handleLogout();
     logoutWs();
     loggedOut();
     navigate("/login");
