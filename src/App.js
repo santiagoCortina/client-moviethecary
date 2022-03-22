@@ -7,7 +7,10 @@ import { getUserWs } from "./services/auth-ws";
 function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setLoading] = useState(true);
-  const handleLogout = () => {};
+
+  const handleLogout = () => {
+    setUser(null);
+  };
 
   const authenticate = (user) => {
     setUser(user);
