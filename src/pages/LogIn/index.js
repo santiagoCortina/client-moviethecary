@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { loginWs } from "../../services/auth-ws";
 
 export default function LogIn({ authenticate }) {
+  
   const [form, setForm] = useState({
     email: "",
     password: "",
