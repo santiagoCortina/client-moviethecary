@@ -14,7 +14,6 @@ const Navbar = (props) => {
   const [, forceUpdate] = useState({});
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
-  const [user, setUser] = useState(props.user._id);
 
   const loggedOut = () => {
     message.info("Log out success! Hope to see you back soon.");
@@ -34,7 +33,6 @@ const Navbar = (props) => {
 
   const handleLogout = () => {
     logoutWs();
-    props.handleLogout();
     loggedOut();
     navigate("/login");
     window.location.reload(false);
@@ -64,7 +62,9 @@ const Navbar = (props) => {
     <nav>
       <Link to="/" className="nav__projectName">
         What to watch: The Moviethecary
-        {user ? " welcomes you:" + props.user.email : " invites you to join!"}
+        {props.user
+          ? " welcomes you:" + props.user.email
+          : " invites you to join!"}
       </Link>
 
       {props.user ? (
