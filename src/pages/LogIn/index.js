@@ -29,11 +29,12 @@ export default function LogIn({ authenticate }) {
     <>
       <br></br>
       <br></br>
+      <h1>Log In</h1>
       <div>
         <Form
           name="basic"
           labelCol={{
-            span: 8,
+            span: 9,
           }}
           wrapperCol={{
             span: 6,
@@ -73,7 +74,7 @@ export default function LogIn({ authenticate }) {
 
           <Form.Item
             wrapperCol={{
-              offset: 8,
+              offset: 9,
               span: 6,
             }}
           >
@@ -84,7 +85,7 @@ export default function LogIn({ authenticate }) {
               </div>
             )}
             <Button type="primary" htmlType="submit">
-              Submit
+              Log In!
             </Button>
           </Form.Item>
         </Form>
