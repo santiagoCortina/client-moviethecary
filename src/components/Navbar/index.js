@@ -63,7 +63,7 @@ const Navbar = (props) => {
       <Link to="/" className="nav__projectName">
         What to watch: The Moviethecary
         {props.user
-          ? " welcomes you :" + props.user.email
+          ? " welcomes you: " + props.user.email
           : " invites you to join!"}
       </Link>
 
