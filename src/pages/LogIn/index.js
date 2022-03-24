@@ -1,31 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginWs } from "../../services/auth-ws";
+import { Form, Input, Button } from "antd";
 
 export default function LogIn({ authenticate }) {
-  
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
-  const { email, password } = form;
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    setError(null);
-    return setForm({ ...form, [name]: value });
-  }
-
-  async function handleFormSubmission(event) {
-    event.preventDefault();
+  const onFinish = async (values) => {
     try {
-      const credentials = {
-        email,
-        password,
-      };
-      const { data, status, errorMessage } = await loginWs(credentials);
+      const { data, status, errorMessage } = await loginWs(values);
       if (status) {
         authenticate(data.user);
         navigate("/feed");
@@ -35,46 +19,76 @@ export default function LogIn({ authenticate }) {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
 
   return (
-    <div>
-      <h1>Log In</h1>
-      <form onSubmit={handleFormSubmission} className="signup__form">
-        <label htmlFor="input-email">Email</label>
-        <input
-          id="input-email"
-          type="text"
-          name="email"
-          placeholder="email"
-          value={email}
-          onChange={handleInputChange}
-          required
-        />
+    <>
+      <br></br>
+      <br></br>
+      <div>
+        <Form
+          name="basic"
+          labelCol={{
+            span: 8,
+          }}
+          wrapperCol={{
+            span: 6,
+          }}
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: "Please input your email!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
-        <label htmlFor="input-password">Password</label>
-        <input
-          id="input-password"
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={handleInputChange}
-          required
-          minLength="8"
-        />
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your password!",
+              },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
 
-        {error && (
-          <div className="error-block">
-            <p>Hubo un problema con tu inicio de sesion:</p>
-            <p>{error}</p>
-          </div>
-        )}
-
-        <button className="button__submit" type="submit">
-          Submit
-        </button>
-      </form>
-    </div>
+          <Form.Item
+            wrapperCol={{
+              offset: 8,
+              span: 6,
+            }}
+          >
+            {error && (
+              <div className="error-block">
+                <p>There was a problem with your Log In:</p>
+                <p>{error}</p>
+              </div>
+            )}
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+    </>
   );
 }

@@ -63,7 +63,7 @@ const Navbar = (props) => {
       <Link to="/" className="nav__projectName">
         What to watch: The Moviethecary
         {props.user
-          ? " welcomes you:" + props.user.email
+          ? " welcomes you :" + props.user.email
           : " invites you to join!"}
       </Link>
 
@@ -140,13 +140,13 @@ const Navbar = (props) => {
               Profile
             </Link>
             <button className="nav-logoutbtn" onClick={handleLogout}>
-              Logout
+              Log Out
             </button>
           </>
         ) : (
           <>
             <Link to="/signup" className="authLink">
-              Signup
+              Sign Up
             </Link>
             <Link to="/login" className="authLink">
               Log In

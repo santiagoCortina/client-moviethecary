@@ -15,7 +15,7 @@ function HomePage() {
         margin: "20px",
       }}
     >
-      <h1>ARE YOU SEEK OF NOT KNOWING WHAT TO WATCH ON TV?!</h1>
+      <h1>ARE YOU SICK OF NOT KNOWING WHAT TO WATCH ON TV?!</h1>
 
       <Card
         hoverable
